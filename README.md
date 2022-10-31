@@ -1,5 +1,24 @@
 # terraform-aws-nara
 
+Built a VPC and configured subnets automatically by using ready public VPC module (url shared below under the list of websites), 2 public subnets and 2 private subnets in 2 AZs: us-east-1 and us-east-2. VPC module creates and configures Internet Gateway and Nat Gateways. Created one EC2 instance running Red Hat Linux in public subnet in us-east-2 AZ with 20 GB storage. Created 1 auto scaling group that will spread out instances across 2 private subnets.
+- Using Red Hat Linux
+- 20 GB storage
+- Script the installation of Apache web server(httpd) on these instances
+
+#!/bin/bash 
+yum install httpd
+systemctl start httpd
+systemctl enable httpd
+systemctl status httpd
+
+- 2 minimum, 6 maximum hosts
+Created 1 application load balancer that listens on TCP port 80 (HTTP) and forwards traffic to the
+ASG in 2 private subnets.
+
+And created S3 bucket with two folders and the following lifecycle policies:
+- "Images" folder - move objects older than 90 days to glacier
+- "Logs" folder - delete objects older than 90 days
+
 ## Architectural Diagram:
 ![Alt text here](/img/nara.jpg)
 
