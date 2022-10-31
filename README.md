@@ -1,6 +1,9 @@
 # terraform-aws-nara
 The list of website I have use:
 
+Architectural Diagram:
+![Alt text here](/img/nara.jpg)
+
 VPC resources:
 - https://github.com/terraform-aws-modules/terraform-aws-vpc
 - https://github.com/terraform-aws-modules/terraform-aws-vpc
